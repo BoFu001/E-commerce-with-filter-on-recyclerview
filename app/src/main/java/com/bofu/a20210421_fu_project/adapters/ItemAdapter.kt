@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.extensions.getUrl
-import com.bofu.a20210421_fu_project.models.ItemData
+import com.bofu.a20210421_fu_project.models.main.ItemData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_item.view.*
 
-class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (ItemData, Int) -> Unit): RecyclerView.Adapter<ItemAdapter.OverallDataHolder>(){
+class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (Int) -> Unit): RecyclerView.Adapter<ItemAdapter.OverallDataHolder>(){
 
     fun update(newData: ArrayList<ItemData>) {
         item.clear()
@@ -44,7 +44,7 @@ class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (ItemData
         Picasso.get().load(imageUrl).into(holder.productImg)
 
         holder.itemView.setOnClickListener {
-            onClickListener(item[position], position)
+            onClickListener(position)
         }
     }
 

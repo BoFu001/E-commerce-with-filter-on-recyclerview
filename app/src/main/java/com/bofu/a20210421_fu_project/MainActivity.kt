@@ -1,12 +1,12 @@
 package com.bofu.a20210421_fu_project
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bofu.a20210421_fu_project.adapters.ItemAdapter
-import com.bofu.a20210421_fu_project.models.ItemData
 import com.bofu.a20210421_fu_project.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun itemRecyclerViewSetup(){
-        item_recycler_view.apply {
+        main_recycler_view.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = itemAdapter
@@ -52,8 +52,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun open(itemData: ItemData, position: Int){
-        println(itemData)
+    private fun open(position: Int){
+        //val itemData = mainViewModel.liveData.value!![position]
+        val intent = Intent(this, DetailActivity::class.java)
+        startActivity(intent)
     }
 
 

@@ -3,8 +3,8 @@ package com.bofu.a20210421_fu_project.viewModels
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bofu.a20210421_fu_project.models.ItemData
-import com.bofu.a20210421_fu_project.models.OverallData
+import com.bofu.a20210421_fu_project.models.main.ItemData
+import com.bofu.a20210421_fu_project.models.main.OverallData
 import com.bofu.a20210421_fu_project.services.ItemDataService
 import retrofit2.Call
 import retrofit2.Callback

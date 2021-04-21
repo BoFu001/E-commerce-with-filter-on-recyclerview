@@ -1,12 +1,16 @@
-package com.bofu.a20210421_fu_project.models
+package com.bofu.a20210421_fu_project.models.main
 
 data class ItemData (
+
     val Cod10: String,
     val Brand: String,
+    val MicroCategory: String,
+    val FormattedFullPrice: String,
+    val FormattedDiscountedPrice: String,
+
     val BrandID: Long,
     val Author: Author,
     val MicroCategoryCode: String,
-    val MicroCategory: String,
     val MicroCategoryPlural: String,
     val MacroCategoryCode: String,
     val MacroCategory: String,
@@ -19,8 +23,6 @@ data class ItemData (
     val HasFlipSide: Boolean,
     val HasModelImage: Boolean,
     val SalesLineID: String,
-    val FormattedFullPrice: String,
-    val FormattedDiscountedPrice: String,
     val DiscountedPriceEur: Long,
     val HasAlternativeImage: Boolean,
     val Title: String? = null
