@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun open(position: Int){
-        //val itemData = mainViewModel.liveData.value!![position]
+        // val itemData = mainViewModel.liveData.value!![position]
         val intent = Intent(this, DetailActivity::class.java)
         startActivity(intent)
     }
