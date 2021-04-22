@@ -7,8 +7,8 @@ data class ItemDetailData (
     val Category: Category,
     val FormattedPrice: FormattedPrice,
     val ItemDescriptions: ItemDescriptions,
-    val Colors: List<Color>,
-    val Sizes: List<Size>,
+    val Colors: ArrayList<Color>,
+    val Sizes: ArrayList<Size>,
 
     val ImageUrls: ImageUrls,
     val SocialDetails: SocialDetails,

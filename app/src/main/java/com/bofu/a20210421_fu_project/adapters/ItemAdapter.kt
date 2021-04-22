@@ -49,7 +49,7 @@ class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (Int) -> 
     }
 
     class OverallDataHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val productImg: ImageView = itemView.item_image_imageView
+        val productImg: ImageView = itemView.item_image_iv
         val brandName: TextView = itemView.item_brandname_tv
         val category: TextView = itemView.item_category_tv
         val fullPrice: TextView = itemView.item_full_price_tv

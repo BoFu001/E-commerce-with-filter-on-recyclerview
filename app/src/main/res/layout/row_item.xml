@@ -25,7 +25,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/item_image_imageView"
+                android:id="@+id/item_image_iv"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_image_imageView"
+                app:layout_constraintStart_toEndOf="@+id/item_image_iv"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:textColor="@color/subtitle"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_image_imageView"
+                app:layout_constraintStart_toEndOf="@+id/item_image_iv"
                 app:layout_constraintTop_toBottomOf="@+id/item_brandname_tv" />
 
 
@@ -72,7 +72,7 @@
                 android:textSize="12sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_image_imageView"
+                app:layout_constraintStart_toEndOf="@+id/item_image_iv"
                 app:layout_constraintBottom_toTopOf="@+id/item_discounted_price_tv" />
 
 
@@ -89,7 +89,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_image_imageView" />
+                app:layout_constraintStart_toEndOf="@+id/item_image_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

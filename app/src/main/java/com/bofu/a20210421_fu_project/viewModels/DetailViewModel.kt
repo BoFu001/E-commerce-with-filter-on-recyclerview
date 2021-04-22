@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bofu.a20210421_fu_project.models.detail.ItemDetailData
+import com.bofu.a20210421_fu_project.models.main.ItemData
 import com.bofu.a20210421_fu_project.services.DetailDataService
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,8 +14,11 @@ class DetailViewModel : ViewModel()  {
 
     private val TAG = javaClass.simpleName
     private val detailDataService = DetailDataService()
-    var liveData = MutableLiveData<ItemDetailData>()
+    private lateinit var data: ItemDetailData
+    val liveData = MutableLiveData<ItemDetailData>()
     val isLoading = MutableLiveData<Boolean>(false)
+    val isDownloaded = MutableLiveData<Boolean>()
+    val isColorSelected = MutableLiveData<Boolean>()
 
     fun getItemDetail(){
 
@@ -35,13 +39,24 @@ class DetailViewModel : ViewModel()  {
                 if (response.code() == 200) {
                     val result = response.body()
                     result?.let {
-                        println("zzz" + it)
-                        liveData.value = it
+                        data = it
+                        liveData.value = data
+                        isDownloaded.value = true
                     }
                 }
             }
         }
         detailDataService.getDetail(callback)
+    }
+
+    fun chooseColor(position:Int){
+        data.Colors.map{
+            it.isSelected = false
+        }
+        data.Colors[position].isSelected = true
+        liveData.value = data
+
+        isColorSelected.value = true
     }
 
 

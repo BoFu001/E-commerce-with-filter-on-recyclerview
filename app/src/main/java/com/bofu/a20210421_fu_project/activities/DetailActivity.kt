@@ -4,7 +4,9 @@ import android.graphics.Paint
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bofu.a20210421_fu_project.R
+import com.bofu.a20210421_fu_project.adapters.ColorAdapter
 import com.bofu.a20210421_fu_project.extensions.format
 import com.bofu.a20210421_fu_project.extensions.getUrl
 import com.bofu.a20210421_fu_project.viewModels.DetailViewModel
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.no_connection_view.*
 
 class DetailActivity : BaseActivity() {
 
+    var colorAdapter = ColorAdapter(ArrayList(), this::chooseColor)
     private val detailViewModel by lazy {
         ViewModelProvider(this).get(DetailViewModel::class.java)
     }
@@ -26,6 +29,7 @@ class DetailActivity : BaseActivity() {
 
         actionbarSetup()
         collapsingTitleSetup()
+        colorRecyclerViewSetup()
         detailViewModelSetup()
         checkConnection(noconnection_retry_btn, this::detailViewModelGetDetail)
     }
@@ -66,12 +70,23 @@ class DetailActivity : BaseActivity() {
         })
     }
 
+    private fun colorRecyclerViewSetup(){
+        detail_color_recycler.apply {
+            layoutManager = GridLayoutManager(context,1, GridLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+            adapter = colorAdapter
+        }
+    }
+
     private fun detailViewModelSetup(){
-        detailViewModel.liveData.observe(this, Observer {
-            uiUpdate()
+        detailViewModel.isDownloaded.observe(this, Observer {
+            if(it) uiUpdate()
         })
         detailViewModel.isLoading.observe(this, Observer {
             showProgressBar(header_progressBar,it)
+        })
+        detailViewModel.isColorSelected.observe(this, Observer {
+            if(it) colorRecyclerViewUpdate()
         })
     }
 
@@ -93,17 +108,26 @@ class DetailActivity : BaseActivity() {
         detail_fullprice_tv.text = price.FullPrice
         detail_fullprice_tv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         detail_discountedprice_tv.text = price.DiscountedPrice
+
         detail_productinfo_title_tv.text = "Highlights"
-
-
         detail_productinfo_tv.text = description.ProductInfo.format()
 
-        detail_arrowup_lottie.playAnimation()
+        detail_color_title_tv.text = "Color"
+        colorRecyclerViewUpdate()
 
 
-        println(colors.toString())
         println(sizes.toString())
+
+
+        detail_arrowup_lottie.playAnimation()
     }
 
+    private fun colorRecyclerViewUpdate(){
+        colorAdapter.update(detailViewModel.liveData.value!!.Colors)
+    }
+
+    private fun chooseColor(position:Int){
+        detailViewModel.chooseColor(position)
+    }
 
 }

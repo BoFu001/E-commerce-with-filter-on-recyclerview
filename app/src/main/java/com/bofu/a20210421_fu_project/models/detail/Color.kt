@@ -5,5 +5,6 @@ data class Color (
     val ColorCode: String,
     val Code10: String,
     val Name: String,
-    val Rgb: String
+    val Rgb: String,
+    var isSelected: Boolean = false
 )
