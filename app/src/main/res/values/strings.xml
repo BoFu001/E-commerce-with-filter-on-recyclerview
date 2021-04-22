@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">YOOX</string>
+
+    <string name="oops">Oops!</string>
+    <string name="riprova">Riprova</string>
+    <string name="not_connected_hint">Spiacente, non c\'è connesione internet al momento.</string>
 </resources>

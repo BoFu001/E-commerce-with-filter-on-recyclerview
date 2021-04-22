@@ -1,10 +1,10 @@
-package com.bofu.a20210421_fu_project
+package com.bofu.a20210421_fu_project.activities
 
 import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.extensions.format
 import com.bofu.a20210421_fu_project.extensions.getUrl
 import com.bofu.a20210421_fu_project.viewModels.DetailViewModel
@@ -12,8 +12,9 @@ import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.custom_header.*
+import kotlinx.android.synthetic.main.no_connection_view.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() {
 
     private val detailViewModel by lazy {
         ViewModelProvider(this).get(DetailViewModel::class.java)
@@ -25,8 +26,8 @@ class DetailActivity : AppCompatActivity() {
 
         actionbarSetup()
         collapsingTitleSetup()
-        itemViewModelSetup()
-        itemViewModelGetDetail()
+        detailViewModelSetup()
+        checkConnection(noconnection_retry_btn, this::detailViewModelGetDetail)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -65,13 +66,13 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun itemViewModelSetup(){
+    private fun detailViewModelSetup(){
         detailViewModel.liveData.observe(this, Observer {
             uiUpdate()
         })
     }
 
-    private fun itemViewModelGetDetail(){
+    private fun detailViewModelGetDetail(){
         if(!detailViewModel.isLoading.value!!){
             detailViewModel.getItemDetail()
         }
@@ -93,6 +94,8 @@ class DetailActivity : AppCompatActivity() {
 
 
         detail_productinfo_tv.text = description.ProductInfo.format()
+
+        detail_arrowup_lottie.playAnimation()
     }
 
 

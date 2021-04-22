@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.20210421_fu_project">
         <activity
-            android:name=".DetailActivity"
-            android:theme="@style/DetailStyle"/>
+            android:name=".activities.DetailActivity"
+            android:theme="@style/DetailTheme"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
