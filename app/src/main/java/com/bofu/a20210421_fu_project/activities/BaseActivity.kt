@@ -2,6 +2,7 @@ package com.bofu.a20210421_fu_project.activities
 
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bofu.a20210421_fu_project.extensions.isConnectedToNetwork
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,4 +36,14 @@ open class BaseActivity : AppCompatActivity() {
             no_connection_view.visibility = View.VISIBLE
         }
     }
+
+    fun showProgressBar(progressBar: ProgressBar, bool: Boolean){
+        if(bool){
+            progressBar.visibility = View.VISIBLE
+        }else{
+            progressBar.visibility = View.GONE
+        }
+    }
+
+
 }

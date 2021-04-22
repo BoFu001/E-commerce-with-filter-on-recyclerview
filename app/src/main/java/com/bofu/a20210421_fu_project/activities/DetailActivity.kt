@@ -70,6 +70,9 @@ class DetailActivity : BaseActivity() {
         detailViewModel.liveData.observe(this, Observer {
             uiUpdate()
         })
+        detailViewModel.isLoading.observe(this, Observer {
+            showProgressBar(header_progressBar,it)
+        })
     }
 
     private fun detailViewModelGetDetail(){
@@ -80,7 +83,7 @@ class DetailActivity : BaseActivity() {
 
     private fun uiUpdate(){
         val detail = detailViewModel.liveData.value!!
-        val (cod10,brand,category,price,description,color,sizes) = detail
+        val (cod10,brand,category,price,description,colors,sizes) = detail
 
         val imageUrl = cod10.getUrl()
         Picasso.get().load(imageUrl).into(header_iv)
@@ -96,6 +99,10 @@ class DetailActivity : BaseActivity() {
         detail_productinfo_tv.text = description.ProductInfo.format()
 
         detail_arrowup_lottie.playAnimation()
+
+
+        println(colors.toString())
+        println(sizes.toString())
     }
 
 

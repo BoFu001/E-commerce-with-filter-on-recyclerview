@@ -46,6 +46,9 @@ class MainActivity : BaseActivity() {
         mainViewModel.liveData.observe(this, Observer {
             mainAdaptorUpdate()
         })
+        mainViewModel.isLoading.observe(this, Observer {
+            showProgressBar(main_progressBar, it)
+        })
     }
 
     private fun mainViewModelGetList(){
