@@ -37,7 +37,7 @@ class ColorAdapter (var item: ArrayList<Color>, val onClickListener: (Int) -> Un
             false -> holder.check.visibility = View.GONE
         }
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.color_mask_iv.setOnClickListener {
             onClickListener(position)
         }
     }

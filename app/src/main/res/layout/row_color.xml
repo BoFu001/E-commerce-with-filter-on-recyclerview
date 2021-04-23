@@ -40,5 +40,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/color_background_iv" />
 
+    <ImageView
+        android:id="@+id/color_mask_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_background_ripple_white"
+        app:layout_constraintStart_toStartOf="@+id/color_background_iv"
+        app:layout_constraintEnd_toEndOf="@+id/color_background_iv"
+        app:layout_constraintTop_toTopOf="@+id/color_background_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/color_background_iv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

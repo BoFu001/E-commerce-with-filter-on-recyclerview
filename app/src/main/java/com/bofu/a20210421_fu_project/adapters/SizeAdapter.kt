@@ -35,7 +35,7 @@ class SizeAdapter (var item: ArrayList<Size>, val onClickListener: (Int) -> Unit
             false -> holder.background.setImageResource(R.drawable.custom_background_unselected)
         }
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.size_mask_iv.setOnClickListener {
             onClickListener(position)
         }
     }
