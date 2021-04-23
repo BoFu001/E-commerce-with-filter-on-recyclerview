@@ -17,7 +17,7 @@ interface ItemDataApi {
     ) : Call<OverallData>
 }
 
-class ItemDataService {
+class ItemDataService: BaseService() {
     private val api: ItemDataApi
 
     init {
@@ -29,9 +29,5 @@ class ItemDataService {
     fun getList(callback: Callback<OverallData>/*, token: String, limit: Int, offset : Int*/){
         val call = api.getList(/*"Bearer $token", limit, offset*/)
         call.enqueue(callback)
-    }
-
-    companion object {
-        private const val BaseUrl = "https://5aaf9b98bcad130014eeaf0b.mockapi.io/"
     }
 }

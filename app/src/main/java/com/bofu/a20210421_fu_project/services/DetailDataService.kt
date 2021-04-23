@@ -14,7 +14,7 @@ interface DetailDataApi {
     fun getDetail() : Call<ItemDetailData>
 }
 
-class DetailDataService {
+class DetailDataService: BaseService() {
     private val api: DetailDataApi
 
     init {
@@ -26,9 +26,5 @@ class DetailDataService {
     fun getDetail(callback: Callback<ItemDetailData>){
         val call = api.getDetail()
         call.enqueue(callback)
-    }
-
-    companion object {
-        private const val BaseUrl = "https://5aaf9b98bcad130014eeaf0b.mockapi.io/"
     }
 }
