@@ -1,8 +1,5 @@
 package com.bofu.a20210421_fu_project.adapters
 
-
-import android.graphics.Color.parseColor
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +10,6 @@ import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.extensions.rgbTOhex
 import com.bofu.a20210421_fu_project.models.detail.Color
 import kotlinx.android.synthetic.main.row_color.view.*
-import java.util.logging.Level.parse
 
 class ColorAdapter (var item: ArrayList<Color>, val onClickListener: (Int) -> Unit): RecyclerView.Adapter<ColorAdapter.ColorHolder>(){
 
@@ -47,7 +43,7 @@ class ColorAdapter (var item: ArrayList<Color>, val onClickListener: (Int) -> Un
     }
 
     class ColorHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val icon: ImageView = itemView.color_icon_iv
+        val icon: ImageView = itemView.color_background_iv
         val name: TextView = itemView.color_name_tv
         val check: ImageView = itemView.color_icon_check
     }

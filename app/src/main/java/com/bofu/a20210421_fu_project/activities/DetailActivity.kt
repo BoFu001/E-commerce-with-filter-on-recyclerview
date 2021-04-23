@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.adapters.ColorAdapter
+import com.bofu.a20210421_fu_project.adapters.SizeAdapter
 import com.bofu.a20210421_fu_project.extensions.format
 import com.bofu.a20210421_fu_project.extensions.getUrl
 import com.bofu.a20210421_fu_project.viewModels.DetailViewModel
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.no_connection_view.*
 class DetailActivity : BaseActivity() {
 
     var colorAdapter = ColorAdapter(ArrayList(), this::chooseColor)
+    var sizeAdapter = SizeAdapter(ArrayList(), this::chooseSize)
     private val detailViewModel by lazy {
         ViewModelProvider(this).get(DetailViewModel::class.java)
     }
@@ -30,6 +32,7 @@ class DetailActivity : BaseActivity() {
         actionbarSetup()
         collapsingTitleSetup()
         colorRecyclerViewSetup()
+        sizeRecyclerViewSetup()
         detailViewModelSetup()
         checkConnection(noconnection_retry_btn, this::detailViewModelGetDetail)
     }
@@ -78,6 +81,14 @@ class DetailActivity : BaseActivity() {
         }
     }
 
+    private fun sizeRecyclerViewSetup(){
+        detail_size_recycler.apply {
+            layoutManager = GridLayoutManager(context,1, GridLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+            adapter = sizeAdapter
+        }
+    }
+
     private fun detailViewModelSetup(){
         detailViewModel.isDownloaded.observe(this, Observer {
             if(it) uiUpdate()
@@ -87,6 +98,9 @@ class DetailActivity : BaseActivity() {
         })
         detailViewModel.isColorSelected.observe(this, Observer {
             if(it) colorRecyclerViewUpdate()
+        })
+        detailViewModel.isSizeSelected.observe(this, Observer {
+            if(it) sizeRecyclerViewUpdate()
         })
     }
 
@@ -115,8 +129,8 @@ class DetailActivity : BaseActivity() {
         detail_color_title_tv.text = "Color"
         colorRecyclerViewUpdate()
 
-
-        println(sizes.toString())
+        detail_size_title_tv.text = "Size"
+        sizeRecyclerViewUpdate()
 
 
         detail_arrowup_lottie.playAnimation()
@@ -128,6 +142,14 @@ class DetailActivity : BaseActivity() {
 
     private fun chooseColor(position:Int){
         detailViewModel.chooseColor(position)
+    }
+
+    private fun sizeRecyclerViewUpdate(){
+        sizeAdapter.update(detailViewModel.liveData.value!!.Sizes)
+    }
+
+    private fun chooseSize(position: Int){
+        detailViewModel.chooseSize(position)
     }
 
 }

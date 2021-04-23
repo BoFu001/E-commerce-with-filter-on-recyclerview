@@ -19,6 +19,7 @@ class DetailViewModel : ViewModel()  {
     val isLoading = MutableLiveData<Boolean>(false)
     val isDownloaded = MutableLiveData<Boolean>()
     val isColorSelected = MutableLiveData<Boolean>()
+    val isSizeSelected = MutableLiveData<Boolean>()
 
     fun getItemDetail(){
 
@@ -59,5 +60,14 @@ class DetailViewModel : ViewModel()  {
         isColorSelected.value = true
     }
 
+    fun chooseSize(position:Int){
+        data.Sizes.map{
+            it.isSelected = false
+        }
+        data.Sizes[position].isSelected = true
+        liveData.value = data
+
+        isSizeSelected.value = true
+    }
 
 }

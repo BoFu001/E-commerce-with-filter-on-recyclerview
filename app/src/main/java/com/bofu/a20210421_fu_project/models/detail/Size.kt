@@ -5,5 +5,6 @@ data class Size (
     val Name: String,
     val IsoTwoLetterCountryCode: String,
     val DefaultSizeLabel: String,
-    val AlternativeSizeLabel: String
+    val AlternativeSizeLabel: String,
+    var isSelected: Boolean = false
 )
