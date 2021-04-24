@@ -15,7 +15,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.custom_header.*
-import kotlinx.android.synthetic.main.no_connection_view.*
+import kotlinx.android.synthetic.main.no_connection_center_view.*
 
 class DetailActivity : BaseActivity() {
 
@@ -34,7 +34,7 @@ class DetailActivity : BaseActivity() {
         colorRecyclerViewSetup()
         sizeRecyclerViewSetup()
         detailViewModelSetup()
-        checkConnection(noconnection_retry_btn, this::detailViewModelGetDetail)
+        checkConnection(no_connection_center_view, noconnection_center_btn, this::detailViewModelGetDetail, FIRST_LOADING)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -104,7 +104,7 @@ class DetailActivity : BaseActivity() {
         })
     }
 
-    private fun detailViewModelGetDetail(){
+    private fun detailViewModelGetDetail(loadingType: Int){
         if(!detailViewModel.isLoading.value!!){
             detailViewModel.getItemDetail()
         }

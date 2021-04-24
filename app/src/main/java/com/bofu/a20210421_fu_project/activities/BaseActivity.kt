@@ -9,39 +9,60 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 open class BaseActivity : AppCompatActivity() {
 
-    private lateinit var baseAction: () -> Unit
-    private lateinit var baseBtn: Button
-    private fun isConnected() = this.isConnectedToNetwork()
+    companion object {
+        const val FIRST_LOADING = 1
+        const val SCROLL_LOADING = 2
+    }
 
-    override fun onStart() {
+    private lateinit var baseNoConnectionView: View
+    private lateinit var baseBtn: Button
+    private lateinit var baseAction: (Int) -> Unit
+    private var baseLoadingType: Int = 0
+
+/*    override fun onStart() {
         super.onStart()
         retryBtnSetup()
     }
 
     private fun retryBtnSetup(){
         baseBtn.setOnClickListener {
-            checkConnection(baseBtn, baseAction)
+            checkConnection(baseNoConnectionView, baseBtn, baseAction, baseLoadingType)
+        }
+    }*/
+
+    private fun checkConnection() = this.isConnectedToNetwork()
+
+    fun checkConnection(view:View, btn:Button, action:((Int)-> Unit), loadingType:Int){
+
+        baseNoConnectionView = view
+        baseBtn = btn
+        baseAction = action
+        baseLoadingType = loadingType
+
+        baseBtn.setOnClickListener {
+            checkConnection(baseNoConnectionView, baseBtn, baseAction, baseLoadingType)
+        }
+
+        when(checkConnection()){
+            true -> {
+                showNoConnectionView(false)
+                baseAction(loadingType)
+            }
+            false -> showNoConnectionView(true)
         }
     }
 
-    fun checkConnection(btn:Button, action: (()-> Unit)){
-
-        baseBtn = btn
-        baseAction = action
-
-        if(isConnected()){
-            no_connection_view.visibility = View.GONE
-            baseAction()
-        } else {
-            no_connection_view.visibility = View.VISIBLE
+    fun showNoConnectionView(bool: Boolean){
+        when(bool){
+            true -> baseNoConnectionView.visibility = View.VISIBLE
+            false -> baseNoConnectionView.visibility = View.GONE
         }
     }
 
     fun showProgressBar(progressBar: ProgressBar, bool: Boolean){
-        if(bool){
-            progressBar.visibility = View.VISIBLE
-        }else{
-            progressBar.visibility = View.GONE
+        when(bool){
+            true -> progressBar.visibility = View.VISIBLE
+            false -> progressBar.visibility = View.GONE
         }
     }
 

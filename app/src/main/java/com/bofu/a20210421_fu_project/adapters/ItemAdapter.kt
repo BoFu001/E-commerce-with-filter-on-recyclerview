@@ -13,7 +13,7 @@ import com.bofu.a20210421_fu_project.models.main.ItemData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_item.view.*
 
-class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (Int) -> Unit): RecyclerView.Adapter<ItemAdapter.OverallDataHolder>(){
+class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: () -> Unit): RecyclerView.Adapter<ItemAdapter.OverallDataHolder>(){
 
     fun update(newData: ArrayList<ItemData>) {
         item.clear()
@@ -35,8 +35,9 @@ class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (Int) -> 
 
         holder.fullPrice.text = item[position].FormattedFullPrice
         holder.fullPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        if (item[position].FormattedFullPrice != item[position].FormattedDiscountedPrice){
-            holder.fullPrice.visibility = View.VISIBLE
+        when(item[position].FormattedFullPrice != item[position].FormattedDiscountedPrice){
+            true -> holder.fullPrice.visibility = View.VISIBLE
+            false -> holder.fullPrice.visibility = View.GONE
         }
         holder.discountedPrice.text = item[position].FormattedDiscountedPrice
 
@@ -44,7 +45,7 @@ class ItemAdapter (var item: ArrayList<ItemData>, val onClickListener: (Int) -> 
         Picasso.get().load(imageUrl).into(holder.productImg)
 
         holder.itemView.setOnClickListener {
-            onClickListener(position)
+            onClickListener()
         }
     }
 

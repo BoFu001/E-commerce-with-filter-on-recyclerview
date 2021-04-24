@@ -10,11 +10,13 @@ import retrofit2.http.GET
 
 interface ItemDataApi {
     @GET("ynap/v1/searchresult")
-    fun getList(
-        //@Header("authorization") auth: String,
-        //@Query("limit") limit: Int,
-        //@Query("offset") offset: Int
-    ) : Call<OverallData>
+    fun getList1() : Call<OverallData>
+
+    @GET("ynap/v1/searchresult2")
+    fun getList2() : Call<OverallData>
+
+    @GET("ynap/v1/searchresult3")
+    fun getList3() : Call<OverallData>
 }
 
 class ItemDataService: BaseService() {
@@ -26,8 +28,14 @@ class ItemDataService: BaseService() {
         api = retrofit.create(ItemDataApi::class.java)
     }
 
-    fun getList(callback: Callback<OverallData>/*, token: String, limit: Int, offset : Int*/){
-        val call = api.getList(/*"Bearer $token", limit, offset*/)
+    fun getList(callback: Callback<OverallData>, option:Int){
+
+        lateinit var call: Call<OverallData>
+        when(option){
+            1 -> call = api.getList1()
+            2 -> call = api.getList2()
+            3 -> call = api.getList3()
+        }
         call.enqueue(callback)
     }
 }
