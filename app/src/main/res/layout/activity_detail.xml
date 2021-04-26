@@ -14,7 +14,7 @@
         android:fitsSystemWindows="true"
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="@dimen/hearder_height"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 

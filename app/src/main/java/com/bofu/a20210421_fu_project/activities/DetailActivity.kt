@@ -3,18 +3,13 @@ package com.bofu.a20210421_fu_project.activities
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.View
-import android.view.ViewTreeObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.adapters.ColorAdapter
 import com.bofu.a20210421_fu_project.adapters.SizeAdapter
-import com.bofu.a20210421_fu_project.extensions.dpToPx
-import com.bofu.a20210421_fu_project.extensions.format
-import com.bofu.a20210421_fu_project.extensions.getUrl
-import com.bofu.a20210421_fu_project.extensions.pxToDp
+import com.bofu.a20210421_fu_project.extensions.*
 import com.bofu.a20210421_fu_project.viewModels.DetailViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
@@ -145,9 +140,9 @@ class DetailActivity : BaseActivity() {
         // adopt y coordinate dynamically
         val displayMetrics: DisplayMetrics = this.resources.displayMetrics
         val screenHeightPx = displayMetrics.heightPixels
-        val nestedViewVisibleHeightPx = screenHeightPx - 360.dpToPx()
+        val nestedViewVisibleHeightPx = screenHeightPx - resources.getDimension(R.dimen.hearder_height)
         detail_arrowup_lottie.observerHeight {
-            detail_arrowup_lottie.y = (nestedViewVisibleHeightPx - it).toFloat()
+            detail_arrowup_lottie.y = (nestedViewVisibleHeightPx - it)
         }
 
         // start animation
@@ -170,16 +165,4 @@ class DetailActivity : BaseActivity() {
         detailViewModel.chooseSize(position)
     }
 
-}
-
-
-fun <T : View> T.observerHeight(function: (Int) -> Unit) {
-    if (height == 0)
-        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                viewTreeObserver.removeOnGlobalLayoutListener(this)
-                return function(height)
-            }
-        })
-    else return function(height)
 }
