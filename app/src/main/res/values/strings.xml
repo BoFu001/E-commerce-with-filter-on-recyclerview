@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">YOOX</string>
 
+    <!-- No connection View -->
     <string name="oops">Oops!</string>
     <string name="riprova">Riprova</string>
     <string name="not_connected_hint">Spiacente, non c\'è connesione internet al momento.</string>
+
+    <!-- MainActivity -->
+    <string name="main_searchview_by_brand_hint">Search by brand</string>
+    <string name="main_searchview_by_category_hint">Search by category</string>
+
+    <!-- No result View -->
+    <string name="please_use_other_keywords">Please use other keywords</string>
+    <string name="no_items_found">No items found</string>
+
 </resources>

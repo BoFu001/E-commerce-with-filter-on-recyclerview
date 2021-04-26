@@ -14,13 +14,13 @@ import com.bofu.a20210421_fu_project.viewModels.DetailViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.custom_header.*
+import kotlinx.android.synthetic.main.custom_header_collapse.*
 import kotlinx.android.synthetic.main.no_connection_center_view.*
 
 class DetailActivity : BaseActivity() {
 
-    var colorAdapter = ColorAdapter(ArrayList(), this::chooseColor)
-    var sizeAdapter = SizeAdapter(ArrayList(), this::chooseSize)
+    private var colorAdapter = ColorAdapter(ArrayList(), this::chooseColor)
+    private var sizeAdapter = SizeAdapter(ArrayList(), this::chooseSize)
     private val detailViewModel by lazy {
         ViewModelProvider(this).get(DetailViewModel::class.java)
     }
@@ -34,7 +34,7 @@ class DetailActivity : BaseActivity() {
         colorRecyclerViewSetup()
         sizeRecyclerViewSetup()
         detailViewModelSetup()
-        checkConnection(no_connection_center_view, noconnection_center_btn, this::detailViewModelGetDetail, FIRST_LOADING)
+        checkConnection(header_no_connection_center_view, noconnection_center_btn, this::detailViewModelGetDetail, FIRST_LOADING)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -42,10 +42,10 @@ class DetailActivity : BaseActivity() {
         return true
     }
 
-    fun actionbarSetup(){
+    private fun actionbarSetup(){
 
         // get toolbar
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbarTab)
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.detail_toolbar_tab)
 
         // set actionbar
         setSupportActionBar(toolbar)
@@ -54,7 +54,7 @@ class DetailActivity : BaseActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun collapsingTitleSetup(){
+    private fun collapsingTitleSetup(){
 
         var isShow = true
         var scrollRange = -1
@@ -63,11 +63,11 @@ class DetailActivity : BaseActivity() {
                 scrollRange = barLayout?.totalScrollRange!!
             }
             if (scrollRange + verticalOffset == 0){
-                collapsingToolbarLayout.title = "Product detail"
+                detail_collapsing_toolbar_layout.title = "Product detail"
                 isShow = true
             } else if (isShow){
                 // careful there should a space between double quote otherwise it wont work
-                collapsingToolbarLayout.title = " "
+                detail_collapsing_toolbar_layout.title = " "
                 isShow = false
             }
         })
@@ -94,7 +94,7 @@ class DetailActivity : BaseActivity() {
             if(it) uiUpdate()
         })
         detailViewModel.isLoading.observe(this, Observer {
-            showProgressBar(header_progressBar,it)
+            progressBar(header_progressBar,it)
         })
         detailViewModel.isColorSelected.observe(this, Observer {
             if(it) colorRecyclerViewUpdate()

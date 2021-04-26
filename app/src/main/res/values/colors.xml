@@ -16,5 +16,8 @@
     <color name="rippleWhite">#80FFFFFF</color>
 
     <color name="colorAccent1">#832DFF</color>
-    <color name="colorAccent2">#FF6200EE</color>
+    <color name="colorAccent2">#6200EE</color>
+    <color name="colorAccent3">#962DFF</color>
+    <color name="colorAccent4">#4500A8</color>
+
 </resources>

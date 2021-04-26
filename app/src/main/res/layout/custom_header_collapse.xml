@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/no_connection_center_view"
+        android:id="@+id/header_no_connection_center_view"
         layout="@layout/no_connection_center_view"
         android:layout_width="0dp"
         android:layout_height="0dp"

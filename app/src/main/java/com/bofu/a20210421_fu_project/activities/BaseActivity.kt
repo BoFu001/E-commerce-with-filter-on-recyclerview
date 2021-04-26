@@ -5,7 +5,6 @@ import android.widget.Button
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bofu.a20210421_fu_project.extensions.isConnectedToNetwork
-import kotlinx.android.synthetic.main.activity_main.*
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -19,18 +18,7 @@ open class BaseActivity : AppCompatActivity() {
     private lateinit var baseAction: (Int) -> Unit
     private var baseLoadingType: Int = 0
 
-/*    override fun onStart() {
-        super.onStart()
-        retryBtnSetup()
-    }
-
-    private fun retryBtnSetup(){
-        baseBtn.setOnClickListener {
-            checkConnection(baseNoConnectionView, baseBtn, baseAction, baseLoadingType)
-        }
-    }*/
-
-    private fun checkConnection() = this.isConnectedToNetwork()
+    private fun isConnected() = this.isConnectedToNetwork()
 
     fun checkConnection(view:View, btn:Button, action:((Int)-> Unit), loadingType:Int){
 
@@ -43,24 +31,24 @@ open class BaseActivity : AppCompatActivity() {
             checkConnection(baseNoConnectionView, baseBtn, baseAction, baseLoadingType)
         }
 
-        when(checkConnection()){
+        when(isConnected()){
             true -> {
-                showNoConnectionView(false)
+                noConnectionView(false)
                 baseAction(loadingType)
             }
-            false -> showNoConnectionView(true)
+            false -> noConnectionView(true)
         }
     }
 
-    fun showNoConnectionView(bool: Boolean){
-        when(bool){
+    fun noConnectionView(show: Boolean){
+        when(show){
             true -> baseNoConnectionView.visibility = View.VISIBLE
             false -> baseNoConnectionView.visibility = View.GONE
         }
     }
 
-    fun showProgressBar(progressBar: ProgressBar, bool: Boolean){
-        when(bool){
+    fun progressBar(progressBar: ProgressBar, show: Boolean){
+        when(show){
             true -> progressBar.visibility = View.VISIBLE
             false -> progressBar.visibility = View.GONE
         }

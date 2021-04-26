@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="@+id/color_background_iv"
         app:layout_constraintTop_toTopOf="@+id/color_background_iv"
         app:layout_constraintBottom_toBottomOf="@+id/color_background_iv"
-        app:srcCompat="@drawable/ic_baseline_check" />
+        app:srcCompat="@drawable/ic_check" />
 
     <TextView
         android:id="@+id/color_name_tv"

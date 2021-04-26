@@ -11,7 +11,7 @@ import com.bofu.a20210421_fu_project.extensions.rgbTOhex
 import com.bofu.a20210421_fu_project.models.detail.Color
 import kotlinx.android.synthetic.main.row_color.view.*
 
-class ColorAdapter (var item: ArrayList<Color>, val onClickListener: (Int) -> Unit): RecyclerView.Adapter<ColorAdapter.ColorHolder>(){
+class ColorAdapter (private val item: ArrayList<Color>, private val onClickListener: (Int) -> Unit): RecyclerView.Adapter<ColorAdapter.ColorHolder>(){
 
     fun update(newData: ArrayList<Color>) {
         item.clear()

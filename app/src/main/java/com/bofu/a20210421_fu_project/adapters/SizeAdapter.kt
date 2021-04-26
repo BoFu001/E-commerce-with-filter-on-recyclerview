@@ -10,7 +10,7 @@ import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.models.detail.Size
 import kotlinx.android.synthetic.main.row_size.view.*
 
-class SizeAdapter (var item: ArrayList<Size>, val onClickListener: (Int) -> Unit): RecyclerView.Adapter<SizeAdapter.SizeHolder>(){
+class SizeAdapter (private val item: ArrayList<Size>, private val onClickListener: (Int) -> Unit): RecyclerView.Adapter<SizeAdapter.SizeHolder>(){
 
     fun update(newData: ArrayList<Size>) {
         item.clear()

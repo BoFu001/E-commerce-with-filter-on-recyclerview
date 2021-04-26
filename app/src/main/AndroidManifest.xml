@@ -14,12 +14,17 @@
         android:theme="@style/Theme.20210421_fu_project">
         <activity
             android:name=".activities.DetailActivity"
-            android:theme="@style/DetailTheme"/>
+            android:theme="@style/DetailTheme"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
+            android:theme="@style/MainTheme"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
