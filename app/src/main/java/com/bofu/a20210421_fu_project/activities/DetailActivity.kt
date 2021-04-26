@@ -2,20 +2,26 @@ package com.bofu.a20210421_fu_project.activities
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.View
+import android.view.ViewTreeObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.adapters.ColorAdapter
 import com.bofu.a20210421_fu_project.adapters.SizeAdapter
+import com.bofu.a20210421_fu_project.extensions.dpToPx
 import com.bofu.a20210421_fu_project.extensions.format
 import com.bofu.a20210421_fu_project.extensions.getUrl
+import com.bofu.a20210421_fu_project.extensions.pxToDp
 import com.bofu.a20210421_fu_project.viewModels.DetailViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.custom_header_collapse.*
 import kotlinx.android.synthetic.main.no_connection_center_view.*
+
 
 class DetailActivity : BaseActivity() {
 
@@ -132,7 +138,19 @@ class DetailActivity : BaseActivity() {
         detail_size_title_tv.text = "Size"
         sizeRecyclerViewUpdate()
 
+        animationSetup()
+    }
 
+    private fun animationSetup(){
+        // adopt y coordinate dynamically
+        val displayMetrics: DisplayMetrics = this.resources.displayMetrics
+        val screenHeightPx = displayMetrics.heightPixels
+        val nestedViewVisibleHeightPx = screenHeightPx - 360.dpToPx()
+        detail_arrowup_lottie.observerHeight {
+            detail_arrowup_lottie.y = (nestedViewVisibleHeightPx - it).toFloat()
+        }
+
+        // start animation
         detail_arrowup_lottie.playAnimation()
     }
 
@@ -152,4 +170,16 @@ class DetailActivity : BaseActivity() {
         detailViewModel.chooseSize(position)
     }
 
+}
+
+
+fun <T : View> T.observerHeight(function: (Int) -> Unit) {
+    if (height == 0)
+        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                viewTreeObserver.removeOnGlobalLayoutListener(this)
+                return function(height)
+            }
+        })
+    else return function(height)
 }
