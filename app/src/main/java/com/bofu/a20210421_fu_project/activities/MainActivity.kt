@@ -62,11 +62,13 @@ class MainActivity : BaseActivity() {
         searchView?.queryHint = getString(R.string.main_searchview_by_brand_hint)
         searchView?.setSearchableInfo(manager.getSearchableInfo(componentName))
 
-/*        searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
+        /*
+        searchView?.setOnQueryTextFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
 
             }
-        }*/
+        }
+        */
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
@@ -82,11 +84,12 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onQueryTextChange(text: String?): Boolean {
-
-/*                text?.let{
+                /*
+                text?.let{
                     query = it
                     mainAdaptorFilter()
-                }*/
+                }
+                */
                 return false
             }
         })

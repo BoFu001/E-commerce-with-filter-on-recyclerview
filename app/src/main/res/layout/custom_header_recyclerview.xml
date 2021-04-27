@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:singleLine="true"
-        android:text="Filter by:"
+        android:text="@string/filter_by"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +46,7 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="BRAND"/>
+            android:text="@string/brand"/>
 
         <Button
             android:id="@+id/filter_toggle_category_btn"
@@ -57,7 +57,7 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="CATEGORY"/>
+            android:text="@string/category"/>
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
