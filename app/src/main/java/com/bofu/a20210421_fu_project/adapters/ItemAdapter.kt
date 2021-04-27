@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bofu.a20210421_fu_project.R
 import com.bofu.a20210421_fu_project.extensions.getUrl
+import com.bofu.a20210421_fu_project.extensions.setSafeOnClickListener
 import com.bofu.a20210421_fu_project.models.main.ItemData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_item.view.*
@@ -56,7 +57,7 @@ class ItemAdapter (
                 }
             }
 
-            override fun performFiltering(constraint: CharSequence?): FilterResults? {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
 
                 val query = constraint.toString()
                 if (query.isEmpty()) {
@@ -114,7 +115,7 @@ class ItemAdapter (
         val imageUrl = filteredItem[position].Cod10.getUrl()
         Picasso.get().load(imageUrl).into(holder.productImg)
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setSafeOnClickListener {
             onClickListener()
         }
     }
