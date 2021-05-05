@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,9 +34,10 @@ class MainActivity : BaseActivity() {
 
     private var query: String = AMPTY_KEYWORD
     private val itemAdapter = ItemAdapter(ArrayList(), this::openDetail, this::noResultView)
-    private val mainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }
+    private val mainViewModel: MainViewModel by viewModels()
+//    private val mainViewModel by lazy {
+//        ViewModelProvider(this).get(MainViewModel::class.java)
+//    }
     var searchView: SearchView? = null
     var menuItem: MenuItem? = null
 

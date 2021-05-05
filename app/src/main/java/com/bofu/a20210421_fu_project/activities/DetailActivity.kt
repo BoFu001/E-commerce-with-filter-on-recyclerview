@@ -3,6 +3,7 @@ package com.bofu.a20210421_fu_project.activities
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,9 +23,10 @@ class DetailActivity : BaseActivity() {
 
     private var colorAdapter = ColorAdapter(ArrayList(), this::chooseColor)
     private var sizeAdapter = SizeAdapter(ArrayList(), this::chooseSize)
-    private val detailViewModel by lazy {
-        ViewModelProvider(this).get(DetailViewModel::class.java)
-    }
+    private val detailViewModel: DetailViewModel by viewModels()
+//    private val detailViewModel by lazy {
+//        ViewModelProvider(this).get(DetailViewModel::class.java)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

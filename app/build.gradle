@@ -71,4 +71,6 @@ dependencies {
 
     // Airbnb lottie animation
     implementation "com.airbnb.android:lottie:3.4.1"
+
+    implementation 'androidx.fragment:fragment-ktx:1.3.3'
 }
